@@ -23,12 +23,12 @@ char* parse_input(char* buffer) {
 /* Execute the command entered by the user */
 void execute_command(char* command) {
     pid_t pid = fork();
-
     if (pid < 0) {
         perror("fork()");
         exit(1);
     } else if (pid == 0) {
-        char* args[] = {command, NULL};
+        char* args[2];
+        args[0] = command; args[1] = NULL;
         if (execve(command, args, environ) < 0) {
             perror("execve()");
             exit(1);
