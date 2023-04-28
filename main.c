@@ -6,28 +6,42 @@
 
 #define MAX_LEN 1024
 
-extern char **environ; /* define environ */
+extern char **environ;
 
-/* Display the prompt and wait for user input */
-void prompt() {
+/*
+ * Display the prompt and wait for user input
+ */
+void prompt(void)
+{
     printf("$ ");
     fflush(stdout);
 }
 
-/* Parses the user input to get the command */
-char* parse_input(char* buffer) {
-    char* command = strtok(buffer, "\n");
+/*
+ * Parses the user input to get the command
+ */
+char *parse_input(char *buffer)
+{
+    char *command;
+
+    command = strtok(buffer, "\n");
     return command;
 }
 
-/* Execute the command entered by the user */
-void execute_command(char* command) {
-    pid_t pid = fork();
+/*
+ * Execute the command entered by the user
+ */
+void execute_command(char *command)
+{
+    pid_t pid;
+
+    pid = fork();
     if (pid < 0) {
         perror("fork()");
         exit(1);
     } else if (pid == 0) {
-        char* args[2];
+        char *args[2];
+
         args[0] = command; args[1] = NULL;
         if (execve(command, args, environ) < 0) {
             perror("execve()");
@@ -38,9 +52,10 @@ void execute_command(char* command) {
     }
 }
 
-int main(void) {
+int main(void)
+{
     char buffer[MAX_LEN];
-    char* command;
+    char *command;
 
     while (1) {
         prompt();
