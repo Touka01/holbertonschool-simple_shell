@@ -6,7 +6,7 @@
 
 #define MAX_LEN 1024
 
-extern char **environ;
+char **environ;
 
 /*
  * Display the prompt and wait for user input
@@ -36,18 +36,25 @@ void execute_command(char *command)
     pid_t pid;
 
     pid = fork();
-    if (pid < 0) {
+    if (pid < 0)
+    {
         perror("fork()");
         exit(1);
-    } else if (pid == 0) {
+    }
+    else if (pid == 0)
+    {
         char *args[2];
 
-        args[0] = command; args[1] = NULL;
-        if (execve(command, args, environ) < 0) {
+        args[0] = command;
+        args[1] = NULL;
+        if (execve(command, args, environ) < 0)
+        {
             perror("execve()");
             exit(1);
         }
-    } else {
+    }
+    else
+    {
         wait(NULL);
     }
 }
@@ -57,18 +64,21 @@ int main(void)
     char buffer[MAX_LEN];
     char *command;
 
-    while (1) {
+    while (1)
+    {
         prompt();
         fgets(buffer, MAX_LEN, stdin);
-        strtok(buffer, "\n"); /* remove newline character */
+        strtok(buffer, "\n");
 
         command = parse_input(buffer);
 
-        if (strcmp(command, "exit") == 0) {
+        if (strcmp(command, "exit") == 0)
+        {
             break;
         }
-
-        if (strlen(command) == 0) {
+        
+        if (strlen(command) == 0)
+        {
             continue;
         }
 
