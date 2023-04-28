@@ -10,7 +10,10 @@ char **environ;
 
 /**
  * prompt - Display the prompt and wait for user input.
- * 
+ *
+ * This function simply displays the '$' prompt and flushes the
+ * standard output. It does not take any arguments or return anything.
+ *
  * Return: void
  */
 void prompt(void)
@@ -21,6 +24,11 @@ void prompt(void)
 
 /**
  * parse_input - Parses the user input to get the command.
+ *
+ * This function takes a string as an argument, which is expected to be
+ * the user input. It then parses this string to extract the command
+ * and return the command as a new string.
+ *
  * @buffer: the user input
  *
  * Return: the command entered by the user
@@ -34,9 +42,15 @@ char *parse_input(char *buffer)
 }
 
 /**
- * Execute the command entered by the user
+ * execute_command - Executes the command entered by the user.
+ *
+ * This function takes a string as an argument, which is expected
+ * to be the command entered by the user. It creates a new child process
+ * and executes the command within that child process using the execve
+ * system call.
+ *
  * @command: the command entered by the user
- * 
+ *
  * Return: void
  */
 void execute_command(char *command)
@@ -68,8 +82,13 @@ void execute_command(char *command)
 }
 
 /**
- * main - Runs the shell loop
- * 
+ * main - Runs the shell loop.
+ *
+ * This function is the entry point for the program. It creates
+ * an endless loop that repeatedly prompts the user for input,
+ * parses the input to extract the command, and then executes
+ * the command using the execute_command function.
+ *
  * Return: 0 on success
  */
 int main(void)
