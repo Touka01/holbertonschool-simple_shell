@@ -76,7 +76,6 @@ int main(void)
 		{
 			break;
 		}
-		
 		if (strlen(command) == 0)
 		{
 			continue;
