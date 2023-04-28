@@ -6,7 +6,7 @@
 
 #define MAX_LEN 1024
 
-extern char **environ; // define environ
+extern char **environ; /* define environ */
 
 /* Display the prompt and wait for user input */
 void prompt() {
@@ -45,7 +45,7 @@ int main(void) {
     while (1) {
         prompt();
         fgets(buffer, MAX_LEN, stdin);
-        strtok(buffer, "\n"); // remove newline character
+        strtok(buffer, "\n"); /* remove newline character */
 
         command = parse_input(buffer);
 
