@@ -81,10 +81,10 @@ void execute_command(char **args)
     }
     else if (pid == 0)
     {
-        // Check if the command is the 'env' built-in
+        /* Check if the command is the 'env' built-in */
         if (strcmp(args[0], "env") == 0)
         {
-            // Print the current environment variables
+            /* Print the current environment variables */
             char **env = environ;
             while (*env)
             {
@@ -93,7 +93,7 @@ void execute_command(char **args)
             exit(EXIT_SUCCESS);
         }
 
-        // Search for the command in all directories specified in PATH
+        /* Search for the command in all directories specified in PATH */
         full_path = strtok(path, ":");
         while (full_path != NULL)
         {
@@ -101,7 +101,7 @@ void execute_command(char **args)
             sprintf(command_path, "%s/%s", full_path, args[0]);
             if (access(command_path, X_OK) == 0)
             {
-                // Execute the command
+                /* Execute the command */
                 if (execve(command_path, args, environ) < 0)
                 {
                     perror("execve()");
@@ -111,7 +111,7 @@ void execute_command(char **args)
             free(command_path);
             full_path = strtok(NULL, ":");
         }
-        // Command not found
+        /* if Command not found */
         printf("Command not found: %s", args[0]);
         exit(EXIT_FAILURE);
     }
