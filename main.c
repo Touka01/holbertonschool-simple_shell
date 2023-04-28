@@ -88,8 +88,7 @@ void execute_command(char **args)
             char **env = environ;
             while (*env)
             {
-                printf("%s
-", *env++);
+                printf("%s", *env++);
             }
             exit(EXIT_SUCCESS);
         }
