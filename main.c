@@ -25,7 +25,7 @@ char *parse_input(char *buffer)
 	char *command;
 
 	command = strtok(buffer, "\n");
-	return command;
+	return (0);
 }
 
 /*
@@ -84,5 +84,5 @@ int main(void)
 		execute_command(command);
 	}
 
-	return 0;
+	return (EXIT_SUCCESS);
 }
