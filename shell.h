@@ -11,7 +11,7 @@
 extern char **environ;
 
 /*
- * Display the prompt and wait for user input 
+ * Display the prompt and wait for user input
 */
 void prompt(void);
 
