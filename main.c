@@ -8,8 +8,8 @@
 
 char **environ;
 
-/*
- * Display the prompt and wait for user input
+/**
+ * prompt - Display the prompt and wait for user input
  */
 void prompt(void)
 {
@@ -17,7 +17,7 @@ void prompt(void)
 	fflush(stdout);
 }
 
-/*
+/**
  * Parses the user input to get the command
  * @buffer: the user input
  * Return: the command entered by the user
@@ -30,7 +30,7 @@ char *parse_input(char *buffer)
 	return (0);
 }
 
-/*
+/**
  * Execute the command entered by the user
  * @command: the command entered by the user
  */
@@ -64,7 +64,6 @@ void execute_command(char *command)
 
 /**
  * main - Runs the shell loop
- * 
  * Return: 0 on success
  */
 int main(void)
