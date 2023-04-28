@@ -13,8 +13,8 @@ char **environ;
  */
 void prompt(void)
 {
-    printf("$ ");
-    fflush(stdout);
+	printf("$ ");
+	fflush(stdout);
 }
 
 /*
@@ -22,10 +22,10 @@ void prompt(void)
  */
 char *parse_input(char *buffer)
 {
-    char *command;
+	char *command;
 
-    command = strtok(buffer, "\n");
-    return command;
+	command = strtok(buffer, "\n");
+	return command;
 }
 
 /*
@@ -33,57 +33,57 @@ char *parse_input(char *buffer)
  */
 void execute_command(char *command)
 {
-    pid_t pid;
+	pid_t pid;
 
-    pid = fork();
-    if (pid < 0)
-    {
-        perror("fork()");
-        exit(1);
-    }
-    else if (pid == 0)
-    {
-        char *args[2];
+	pid = fork();
+	if (pid < 0)
+	{
+		perror("fork()");
+		exit(1);
+	}
+	else if (pid == 0)
+	{
+		char *args[2];
 
-        args[0] = command;
-        args[1] = NULL;
-        if (execve(command, args, environ) < 0)
-        {
-            perror("execve()");
-            exit(1);
-        }
-    }
-    else
-    {
-        wait(NULL);
-    }
+		args[0] = command;
+		args[1] = NULL;
+		if (execve(command, args, environ) < 0)
+		{
+			perror("execve()");
+			exit(1);
+		}
+	}
+	else
+	{
+		wait(NULL);
+	}
 }
 
 int main(void)
 {
-    char buffer[MAX_LEN];
-    char *command;
+	char buffer[MAX_LEN];
+	char *command;
 
-    while (1)
-    {
-        prompt();
-        fgets(buffer, MAX_LEN, stdin);
-        strtok(buffer, "\n");
+	while (1)
+	{
+		prompt();
+		fgets(buffer, MAX_LEN, stdin);
+		strtok(buffer, "\n");
 
-        command = parse_input(buffer);
+		command = parse_input(buffer);
 
-        if (strcmp(command, "exit") == 0)
-        {
-            break;
-        }
-        
-        if (strlen(command) == 0)
-        {
-            continue;
-        }
+		if (strcmp(command, "exit") == 0)
+		{
+			break;
+		}
+		
+		if (strlen(command) == 0)
+		{
+			continue;
+		}
 
-        execute_command(command);
-    }
+		execute_command(command);
+	}
 
-    return 0;
+	return 0;
 }
