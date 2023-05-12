@@ -36,7 +36,8 @@ prompt.c --------------------------- holds the prompt ($)
 ```
 ### Environment
 * Language: C
-* Compiler: gcc 4.8.4
+* OS Ubuntu: 20.4
+* Compiler: gcc 9.4.0
 * Style guidelines: [Betty style](https://github.com/holbertonschool/Betty/wiki)
 
 ## How To Install, Compile, and Use
